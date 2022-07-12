@@ -3,7 +3,7 @@ const app = {
         console.log('App initialized');
 
         // Choix de la section : Pro/Individual
-        document.querySelectorAll('.item-section button').forEach(function(section) {
+        document.querySelectorAll('.item-section .item-btn').forEach(function(section) {
             section.addEventListener('click', app.handleClickSection);
         });
     },
@@ -16,11 +16,15 @@ const app = {
         event.preventDefault();
 
         const btnElt = event.target;
+        const sectionTypeElt = btnElt.closest('.item-section-type');
 
         // On récupère la section que l'on stocke dans la variable app.section
         // TODO : on le stocke en sessionStorage
-        const sectionType = btnElt.dataset.section;
-        const sectionIndex = btnElt.dataset.index || 1;
+        const sectionType = sectionTypeElt.dataset.section;
+        const sectionIndex = sectionTypeElt.dataset.next || 1;
+
+
+        console.log('sectionType : ', sectionType, 'sectionIndex : ', sectionIndex);
 
         // On affiche les questions de la section
         app.goToSection(sectionType, sectionIndex);
@@ -36,10 +40,9 @@ const app = {
 
         // On récupère le template de l'item de la section, que l'on remplit avec les données de l'item
 
-        console.log(section, formData.sections[section]);
 
-        const sectionData = formData.sections[section].find(item => item.index === index);
-        console.log(sectionData);
+        const sectionData = formData.sections[section].find(item => item.index == index);
+        console.log(sectionData, formData.sections[section]);
 
         if (sectionData) {
             // Titre de la section
@@ -54,18 +57,19 @@ const app = {
                 sectionTypelt.dataset.next = sectionData.index + 1;
                 sectionTypelt.dataset.choice = choice;
                 sectionTypelt.dataset.section = section;
+                sectionTypelt.classList.add('text-white', 'rounded');
                 if (sectionType === "text") {
-                    sectionTypelt.classList.add('bg-dark', 'text-white', 'rounded');
-                    sectionTypelt.innerHTML = `<button class="text-light btn btn-dark w-100 p-3">${choice}</button>`;
+                    sectionTypelt.innerHTML = `<button class="text-light btn btn-dark w-100 p-3 item-btn">${choice}</button>`;
                 } else if (sectionType === "color") {
-                    sectionTypelt.innerHTML = `<input type="color" id="head" name="head" value="${choice}">`;
+                    // sectionTypelt.innerHTML = `<input type="color" id="head" name="head" value="${choice}">`;
+                    sectionTypelt.innerHTML = `<button class="text-light btn btn-dark w-100 p-3 item-btn" style="background-color:${choice}">`;
                 } else {
                     // Type image par défaut
-                    sectionTypelt.innerHTML = `<img src="${choice}" class="rounded">`;
+                    sectionTypelt.innerHTML = `<a href="#" class="item-btn"><img src="${choice}" class="rounded"></a>`;
                 }
 
                 // On branche l'event sur les boutons de la section
-                sectionTypelt.querySelectorAll('button').forEach(function(sectionItemElt) {
+                sectionTypelt.querySelectorAll('.item-btn').forEach(function(sectionItemElt) {
                     sectionItemElt.addEventListener('click', app.handleClickSection);
                 });
 
