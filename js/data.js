@@ -35,6 +35,15 @@ const choiceKitchen = [
     'https://via.placeholder.com/300?text=Cuisine4'
 ];
 
+
+// Choix des cuisines
+const choiceBathroom = [
+    'https://via.placeholder.com/300?text=SalleDeBain1',
+    'https://via.placeholder.com/300?text=SalleDeBain2',
+    'https://via.placeholder.com/300?text=SalleDeBain3',
+    'https://via.placeholder.com/300?text=SalleDeBain4'
+];
+
 // Choix du domaine d'activités
 const choiceActivities = ['Artiste peintre', 'Graphiste', 'Investisseur', 'Avocat'];
 
@@ -46,10 +55,10 @@ const formData = {
             { index: 2, title: "Style", choices: choiceStyles },
             { index: 3, title: "4 sols", choices: choiceFloor },
             { index: 4, title: "4 luminaires", choices: choiceLight },
-            { index: 5, title: "Cuisine", type: "question", "next_yes": 5, "next_no": 6 },
-            { index: 6, title: "4 Cuisines", choices: choiceColors },
-            { index: 7, title: "Salle de bain", type: "question", "next_yes": 7, "next_no": 8 },
-            { index: 8, title: "4 sdb", choices: choiceColors },
+            { index: 5, title: "Cuisine", type: "question", "next_yes": 6, "next_no": 7 },
+            { index: 6, title: "4 Cuisines", choices: choiceKitchen },
+            { index: 7, title: "Salle de bain", type: "question", "next_yes": 8, "next_no": 9 },
+            { index: 8, title: "4 sdb", choices: choiceBathroom },
             { index: 9, title: "Ajouter des photos", type: "file" }
         ],
         "pro": [
