@@ -112,7 +112,7 @@ const app = {
                     sectionElt.querySelector('.item-section-choice').appendChild(sectionTypelt);
 
                     // On branche l'event sur les boutons de la section
-                    // sectionTypelt.querySelector('.item-btn').addEventListener('click', app.handleClickSection);
+                    sectionTypelt.querySelector('.item-btn').addEventListener('click', app.handleClickSection);
 
                 });
             }
